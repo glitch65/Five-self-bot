@@ -1,4 +1,4 @@
-f# Five self bot | v 1.0 - Beta
+# Five self bot | v 1.0 - Beta
 
 # This version has only 1 command - start that nukes server 
 
