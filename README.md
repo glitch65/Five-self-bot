@@ -1,4 +1,6 @@
-# Five self bot | v 1.0 - Beta
+# Five self bot | v 1.0B - Beta
+
+# v 1.0B - Beta -> added little rewrite of config system removed references to nuker and added a small warning for those who haven't read the readme
 
 # This version has only 1 command - start that nukes server 
 

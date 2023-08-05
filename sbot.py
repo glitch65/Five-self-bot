@@ -48,7 +48,7 @@ else:
                          'ac_name': 'five self bot on top',
                          'ac_type': '1',
                          'channels and roles name': 'nuked by five self bot',
-                         'webhooks name': 'five nuker',
+                         'webhooks name': 'five self bot',
                          'server name':'nuked by five self bot',
                          'ban reason': 'XDDDD' }
     with open('cfg.ini', 'w') as cfg_file:
@@ -151,6 +151,9 @@ async def bananaa(ctx):
       except: pass
  
 
+
+
+
 def mm():
     print(f'{Fore.MAGENTA}' + '''
   █████▒ ██▓ ██▒   █▓▓█████      ██████ ▓█████  ██▓      █████▒    ▄▄▄▄    ▒█████  ▄▄▄█████▓
@@ -167,6 +170,7 @@ def mm():
 
 mm()
 
+print(f'{Fore.RED}' + 'Discord can ban your account so be careful!')
 input('Welcome to Five Self Bot press Enter to start self bot...')
 print(f'{Fore.CYAN}[BOT]' + '\033[39m' + 'The login process may take longer if the account that will act as a bot if the account has many servers')
 time.sleep(.5)
