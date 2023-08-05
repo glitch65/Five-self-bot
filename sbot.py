@@ -49,7 +49,7 @@ else:
                          'ac_type': '1',
                          'channels and roles name': 'nuked by five self bot',
                          'webhooks name': 'five nuker',
-                         'server name':'nuked by five nuker',
+                         'server name':'nuked by five self bot',
                          'ban reason': 'XDDDD' }
     with open('cfg.ini', 'w') as cfg_file:
             config.write(cfg_file)
