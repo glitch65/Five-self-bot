@@ -1,5 +1,7 @@
 # Five self bot | v 1.2 - Beta
 
+# At the moment the self bot is not working yet 
+
 # v 1.2 - Beta -> added new command, added version checker, updated five nuker integration v2.2
 
 # v 1.1 - Beta -> added 2 new commands - help and spam 
