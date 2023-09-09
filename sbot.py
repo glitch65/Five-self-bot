@@ -16,15 +16,15 @@ import urllib3
 
 http = urllib3.PoolManager()
 
-get_last_ver = http.request('GET', 'https://raw.githubusercontent.com/glitch65/some-random-things-for-my-projects/main/fsb/version')
-get_changelog = http.request('GET', 'https://raw.githubusercontent.com/glitch65/some-random-things-for-my-projects/main/fsb/changelog')
+get_last_ver = http.request('GET', 'https://raw.githubusercontent.com/glitch65/Five-self-bot/ver/version')
+get_changelog = http.request('GET', 'https://raw.githubusercontent.com/glitch65/Five-self-bot/ver/changelog')
 
 
 ver = get_last_ver.data.decode('utf-8')
 chl = get_changelog.data.decode('utf-8')
 
 
-curent_version = str(1.2)
+curent_version = str('1.2B - Beta')
 
 
 
@@ -198,7 +198,7 @@ async def spam(ctx,howm:int,*,txt):
 
 @client.command()
 async def help(ctx):
-    await ctx.send('```Five self bot help | v 1.2 - Beta \n' + prefix + 'start = will nuke server like five nuker\n' + prefix + 'spam will spam with youre massage as much as you want -> (amout of massges) + (massage) like ' + prefix + 'spam 10 yooo\n' + prefix + 'adminall will give everyone admin on this server```') 
+    await ctx.send('```Five self bot help | v' + curent_version + '\n' + prefix + 'start = will nuke server like five nuker\n' + prefix + 'spam will spam with youre massage as much as you want -> (amout of massges) + (massage) like ' + prefix + 'spam 10 yooo\n' + prefix + 'adminall will give everyone admin on this server```') 
 
 async def bananaa(ctx):
     for member in list(ctx.guild.members):
