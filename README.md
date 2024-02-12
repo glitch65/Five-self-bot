@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> I'm closing this project because it's useless lol
+
 # Five self bot | v 1.2B - Beta
 
 # Changelogs:
